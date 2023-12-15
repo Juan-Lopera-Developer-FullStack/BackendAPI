@@ -1,6 +1,12 @@
 ﻿using BackendAPI.Models.Repositorio;
 using BackendAPI.Models.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Data;
+using System;
 
 namespace BackendAPI.Controllers
 {
@@ -9,10 +15,12 @@ namespace BackendAPI.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private IConfiguration _config;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio, IConfiguration config)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _config = config;
         }
 
         [HttpGet]
@@ -52,6 +60,40 @@ namespace BackendAPI.Controllers
                 return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
             }
             return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
+        }
+
+        [HttpPost]
+        [Route("api/TokenUsuario")]
+        public async Task<IActionResult> TokenUsuario(string usuario, string contraseña)
+        {
+            bool resultado = await _usuarioRepositorio.ValidarUsuario(usuario,contraseña);
+            if (resultado == true)
+            {
+                string Jwt = GenerarTokenJwt(usuario,contraseña);
+                return StatusCode(StatusCodes.Status200OK, new { valor = Jwt, msg = "ok" });
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
+        }
+
+        private string GenerarTokenJwt(string usuario, string contraseña)
+        {
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Name, usuario),
+                new Claim(ClaimTypes.SerialNumber, contraseña)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("JWT:Key").Value));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var securityToken = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(1),
+                signingCredentials: creds);
+
+            string token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+
+            return token;
         }
     }
 }

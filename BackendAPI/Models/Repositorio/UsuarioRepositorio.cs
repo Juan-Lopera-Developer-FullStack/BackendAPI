@@ -101,5 +101,38 @@ namespace BackendAPI.Models.Repositorio
                 return false;
             }
         }
+
+        public async Task<bool> ValidarUsuario(string usuario, string contraseña)
+        {
+            string query = "select Usuario, Contraseña from usuarios " +
+                "where Usuario = @usuario and Contraseña = @Contraseña";
+
+            using (var conexion = new SqlConnection(_conexion.CadenaSQL))
+            {
+                SqlCommand cmd = new(query, conexion);
+                cmd.Parameters.AddWithValue("@usuario", usuario.ToString());
+                cmd.Parameters.AddWithValue("@contraseña", contraseña.ToString());
+
+                try
+                {
+                    conexion.Open();
+                    SqlDataReader reader = await cmd.ExecuteReaderAsync();
+
+                    reader.Read();
+                    Usuario oUsuario = new();
+                    oUsuario.User = reader.GetString(0);
+                    oUsuario.Password = reader.GetString(1);
+
+                    reader.Close();
+                    conexion.Close();
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

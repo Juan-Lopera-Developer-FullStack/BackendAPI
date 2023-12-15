@@ -5,11 +5,16 @@ D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\BackendAPI.deps.json
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\BackendAPI.runtimeconfig.json
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\BackendAPI.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\BackendAPI.pdb
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.OpenApi.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
 D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll

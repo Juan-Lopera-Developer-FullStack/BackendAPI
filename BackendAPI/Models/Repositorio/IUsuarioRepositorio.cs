@@ -8,5 +8,6 @@ namespace BackendAPI.Models.Repositorio
         Task<bool> GuardarUsuario(Usuario usuario);
         Task<bool> EditarUsuario(Usuario usuario);
         Task<bool> EliminarUsuario(int id);
+        Task<bool> ValidarUsuario(string usuario, string contraseña);
     }
 }
