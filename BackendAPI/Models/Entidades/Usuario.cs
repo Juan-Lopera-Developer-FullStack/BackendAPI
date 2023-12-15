@@ -9,5 +9,7 @@ namespace BackendAPI.Models.Entidades
         [Required(ErrorMessage = "Usuario es requerido")]
         public string User { get; set; }
         public string Password { get; set; }
+
+        public List<GrupoFamiliar>  GrupoFamiliars { get; set; }
     }
 }

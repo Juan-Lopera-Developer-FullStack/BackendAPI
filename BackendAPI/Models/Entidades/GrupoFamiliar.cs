@@ -8,10 +8,14 @@
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Genero { get; set; }
-        public string Parentezco { get; set; }
+        public string Parentesco { get; set; }
         public int Edad { get; set; }
         public bool MenorEdad { get; set; }
         public DateTime FechaNacimiento { get; set; }
+
+        public int IdUsuario { get; set; }
+
+        public Usuario Usuarios { get; set; }
 
     }
 }
