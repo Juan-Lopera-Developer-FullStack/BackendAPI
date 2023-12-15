@@ -41,3 +41,6 @@ D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\refint\BackendAPI.dll
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\BackendAPI.pdb
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\BackendAPI.genruntimeconfig.cache
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\ref\BackendAPI.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

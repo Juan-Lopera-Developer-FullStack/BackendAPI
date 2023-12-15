@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "+j2PXiDMvgsf0Xd6BEN9VuucPixQmJKlLm8TE9Smpx27XTBXvNKM4X7NyywddzuPyytrbfXA1ARBOnxhAJtrRg==",
+  "dgSpecHash": "IpXe3cjDt+TiyFZNfd8zbT4DQtjn+90+J3e7orAGwuHh7HC/cvEL4Zyy3YihokuEX6HFPhx0PKwTM09YWUUnbg==",
   "success": true,
   "projectFilePath": "D:\\Praxedes\\BackendAPI\\BackendAPI\\BackendAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.1\\microsoft.aspnetcore.authentication.jwtbearer.6.0.1.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.10.0\\microsoft.identitymodel.protocols.6.10.0.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.10.0\\microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

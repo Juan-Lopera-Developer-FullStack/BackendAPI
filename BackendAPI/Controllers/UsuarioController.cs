@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Data;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BackendAPI.Controllers
 {
@@ -23,12 +24,14 @@ namespace BackendAPI.Controllers
             _config = config;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Usuario>>> MostrarUsuarios()
         {
             return await _usuarioRepositorio.ObtenerUsuario();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> GuardarUsuario(Usuario usuario)
         {
@@ -40,6 +43,7 @@ namespace BackendAPI.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> EditarUsuario(Usuario usuario)
         {
@@ -51,6 +55,7 @@ namespace BackendAPI.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> EliminarUsuario(int id)
         {
