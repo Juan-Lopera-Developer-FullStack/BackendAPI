@@ -1,5 +1,7 @@
 ﻿using BackendAPI.Models.Entidades;
 using BackendAPI.Models.Repositorio.IRepositorio;
+using BackendAPI.Servicios;
+using BackendAPI.Servicios.IServicios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,14 +16,14 @@ namespace BackendAPI.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        private IConfiguration _config;
         private readonly ILogPeticionRepositorio _logPeticionRepositorio;
+        private readonly IBearerToken _bearerToken;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio, IConfiguration config, ILogPeticionRepositorio logPeticionRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio, ILogPeticionRepositorio logPeticionRepositorio, IBearerToken bearerToken)
         {
             _usuarioRepositorio = usuarioRepositorio;
-            _config = config;
             _logPeticionRepositorio = logPeticionRepositorio;
+            _bearerToken = bearerToken;
         }
 
         [Authorize]
@@ -120,7 +122,7 @@ namespace BackendAPI.Controllers
                 bool resultado = await _usuarioRepositorio.ValidarUsuario(usuario, contraseña);
                 if (resultado == true)
                 {
-                    string Jwt = GenerarTokenJwt(usuario, contraseña);
+                    string Jwt = _bearerToken.GenerarTokenJwt(usuario, contraseña);
                     _logPeticionRepositorio.LogPeticion("TokenUsuario", "Post", true, "Se creo el token del usuario "
                         + usuario);
                     return StatusCode(StatusCodes.Status200OK, new { valor = Jwt, msg = "ok" });
@@ -136,25 +138,5 @@ namespace BackendAPI.Controllers
             }
         }
 
-        private string GenerarTokenJwt(string usuario, string contraseña)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, usuario),
-                new Claim(ClaimTypes.SerialNumber, contraseña)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("JWT:Key").Value));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var securityToken = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(1),
-                signingCredentials: creds);
-
-            string token = new JwtSecurityTokenHandler().WriteToken(securityToken);
-
-            return token;
-        }
     }
 }

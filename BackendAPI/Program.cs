@@ -1,6 +1,8 @@
 using BackendAPI.Models.Configuracion;
 using BackendAPI.Models.Repositorio;
 using BackendAPI.Models.Repositorio.IRepositorio;
+using BackendAPI.Servicios;
+using BackendAPI.Servicios.IServicios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -17,6 +19,7 @@ builder.Services.Configure<ConfiguracionConexion>(builder.Configuration.GetSecti
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IGrupoFamiliarRepositorio, GrupoFamiliarRepositorio>();
 builder.Services.AddScoped<ILogPeticionRepositorio, LogPeticionRepositorio>();
+builder.Services.AddScoped<IBearerToken, BearerToken>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer( options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
