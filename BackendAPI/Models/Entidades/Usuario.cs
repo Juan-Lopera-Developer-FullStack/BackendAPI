@@ -6,10 +6,11 @@ namespace BackendAPI.Models.Entidades
     public class Usuario
     {
         public int IdUsuario { get; set; }
-        [Required(ErrorMessage = "Usuario es requerido")]
+        
         public string User { get; set; }
         public string Password { get; set; }
 
-        public List<GrupoFamiliar>  GrupoFamiliars { get; set; }
+        [JsonIgnore]
+        public List<GrupoFamiliar> GrupoFamiliars { get; set; }
     }
 }
