@@ -1,5 +1,5 @@
 ﻿using BackendAPI.Models.Entidades;
-using BackendAPI.Models.Repositorio;
+using BackendAPI.Models.Repositorio.IRepositorio;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,7 +56,6 @@ namespace BackendAPI.Controllers
                 _logPeticionRepositorio.LogPeticion("GuardarGrupoFamiliar", "Post", false, ex.Message);
                 return StatusCode(500, "Error interno del servidor");
             }
-            
         }
 
         [Authorize, HttpPut]

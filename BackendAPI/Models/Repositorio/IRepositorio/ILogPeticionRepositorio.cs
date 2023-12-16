@@ -1,4 +1,4 @@
-﻿namespace BackendAPI.Models.Repositorio
+﻿namespace BackendAPI.Models.Repositorio.IRepositorio
 {
     public interface ILogPeticionRepositorio
     {

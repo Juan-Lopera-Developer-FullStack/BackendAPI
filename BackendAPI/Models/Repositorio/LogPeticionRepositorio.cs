@@ -1,4 +1,5 @@
 ﻿using BackendAPI.Models.Configuracion;
+using BackendAPI.Models.Repositorio.IRepositorio;
 using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 

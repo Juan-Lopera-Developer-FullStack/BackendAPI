@@ -4,6 +4,7 @@ using System.Data;
 using BackendAPI.Models.Configuracion;
 using Microsoft.Extensions.Options;
 using System.Reflection;
+using BackendAPI.Models.Repositorio.IRepositorio;
 
 namespace BackendAPI.Models.Repositorio
 {

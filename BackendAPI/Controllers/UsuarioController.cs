@@ -1,13 +1,11 @@
-﻿using BackendAPI.Models.Repositorio;
-using BackendAPI.Models.Entidades;
+﻿using BackendAPI.Models.Entidades;
+using BackendAPI.Models.Repositorio.IRepositorio;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Data;
-using System;
-using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Text;
 
 namespace BackendAPI.Controllers
 {

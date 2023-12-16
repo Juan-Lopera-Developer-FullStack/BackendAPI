@@ -1,5 +1,6 @@
 using BackendAPI.Models.Configuracion;
 using BackendAPI.Models.Repositorio;
+using BackendAPI.Models.Repositorio.IRepositorio;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;

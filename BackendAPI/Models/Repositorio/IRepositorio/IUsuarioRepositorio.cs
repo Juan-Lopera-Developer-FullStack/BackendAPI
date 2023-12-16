@@ -1,6 +1,6 @@
 ﻿using BackendAPI.Models.Entidades;
 
-namespace BackendAPI.Models.Repositorio
+namespace BackendAPI.Models.Repositorio.IRepositorio
 {
     public interface IUsuarioRepositorio
     {

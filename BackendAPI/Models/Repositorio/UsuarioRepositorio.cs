@@ -3,6 +3,7 @@ using BackendAPI.Models.Entidades;
 using System.Data.SqlClient;
 using System.Data;
 using Microsoft.Extensions.Options;
+using BackendAPI.Models.Repositorio.IRepositorio;
 
 namespace BackendAPI.Models.Repositorio
 {
