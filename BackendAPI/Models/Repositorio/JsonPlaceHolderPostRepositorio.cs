@@ -40,19 +40,95 @@ namespace BackendAPI.Models.Repositorio
             }
         }
 
-            public Task<List<Posts>> ObtenerPosts()
+            public async Task<List<Posts>> ObtenerPost()
+            {
+            List<Posts> lista = new();
+            string query = "select UserId, Id, Title, Body from Posts";
+
+            using (var conexion = new SqlConnection(_conexion.CadenaSQL))
+            {
+                conexion.Open();
+                SqlCommand cmd = new(query, conexion);
+                cmd.CommandType = CommandType.Text;
+
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        lista.Add(new Posts()
+                        {
+                            UserId = Convert.ToInt32(reader["UserId"]),
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Title = reader["Title"].ToString(),
+                            Body = reader["Body"].ToString()
+                        });
+                    }
+                }
+            }
+                return lista;
+            }
+
+        public async Task<bool> EditarPost(Posts posts)
         {
-            throw new NotImplementedException();
+            using (var conexion = new SqlConnection(_conexion.CadenaSQL))
+            {
+                conexion.Open();
+                SqlCommand cmd = new("sp_EditarPost", conexion);
+
+                cmd.Parameters.AddWithValue("@UserId", posts.UserId);
+                cmd.Parameters.AddWithValue("@Id", posts.Id);
+                cmd.Parameters.AddWithValue("@Title", posts.Title);
+                cmd.Parameters.AddWithValue("@Body", posts.Body);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int filas_afectadas = await cmd.ExecuteNonQueryAsync();
+                if (filas_afectadas > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
-        public Task<bool> EditarPosts(Posts posts)
+        public async Task<bool> EliminarPost(int id)
         {
-            throw new NotImplementedException();
+            using (var conexion = new SqlConnection(_conexion.CadenaSQL))
+            {
+                conexion.Open();
+                SqlCommand cmd = new("sp_EliminarPost", conexion);
+
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int filas_afectadas = await cmd.ExecuteNonQueryAsync();
+                if (filas_afectadas > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
-        public Task<bool> EliminarPosts(int id)
+        public async Task<bool> GuardarPost(Posts posts)
         {
-            throw new NotImplementedException();
+            using (var conexion = new SqlConnection(_conexion.CadenaSQL))
+            {
+                conexion.Open();
+                SqlCommand cmd = new("sp_GuardarPost", conexion);
+
+                cmd.Parameters.AddWithValue("@UserId", posts.UserId);
+                cmd.Parameters.AddWithValue("@Id", posts.Id);
+                cmd.Parameters.AddWithValue("@Title", posts.Title);
+                cmd.Parameters.AddWithValue("@Body", posts.Body);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                int filas_afectadas = await cmd.ExecuteNonQueryAsync();
+                if (filas_afectadas > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
     }
 }
