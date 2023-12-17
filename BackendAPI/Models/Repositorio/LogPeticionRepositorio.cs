@@ -18,7 +18,7 @@ namespace BackendAPI.Models.Repositorio
             using SqlConnection connection = new(_conexion.CadenaSQL);
             connection.Open();
 
-            string query = "INSERT INTO Log (FechaHora, Metodo, Ruta, Exitosa, MensajeError) " +
+            string query = "INSERT INTO LogPeticion (FechaHora, Metodo, Ruta, Exitosa, MensajeError) " +
                                 "VALUES (@FechaHora, @Metodo, @Ruta, @Exitosa, @MensajeError)";
 
             using SqlCommand cmd = new(query, connection);

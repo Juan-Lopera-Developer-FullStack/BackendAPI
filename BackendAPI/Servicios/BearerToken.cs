@@ -8,7 +8,7 @@ namespace BackendAPI.Servicios
 {
     public class BearerToken : IBearerToken
     {
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public BearerToken(IConfiguration config)
         {
