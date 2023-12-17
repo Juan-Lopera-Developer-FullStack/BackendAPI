@@ -20,8 +20,9 @@ builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IGrupoFamiliarRepositorio, GrupoFamiliarRepositorio>();
 builder.Services.AddScoped<ILogPeticionRepositorio, LogPeticionRepositorio>();
 builder.Services.AddScoped<IBearerToken, BearerToken>();
-builder.Services.AddHttpClient<IJsonPlaceHolderPosts, JsonPlaceHolderPosts>();
+builder.Services.AddHttpClient<IJsonPlaceHolder, JsonPlaceHolder>();
 builder.Services.AddScoped<IJsonPlaceHolderPostRepositorio, JsonPlaceHolderPostRepositorio>();
+builder.Services.AddScoped<IJsonPlaceHolderCommentRepositorio, JsonPlaceHolderCommentRepositorio>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer( options =>
 {

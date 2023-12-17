@@ -1,6 +1,6 @@
 ﻿namespace BackendAPI.Models.Entidades
 {
-    public class Posts
+    public class Post
     {
         public int UserId { get; set; }
         public int Id { get; set; }

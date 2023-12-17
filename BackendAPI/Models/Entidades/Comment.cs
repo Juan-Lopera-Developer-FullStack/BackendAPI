@@ -1,6 +1,6 @@
 ﻿namespace BackendAPI.Models.Entidades
 {
-    public class Comments
+    public class Comment
     {
         public int Id { get; set; }
         public int PostId { get; set; }

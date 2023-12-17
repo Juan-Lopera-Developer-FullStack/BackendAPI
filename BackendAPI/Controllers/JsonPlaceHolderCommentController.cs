@@ -1,5 +1,4 @@
-﻿
-using BackendAPI.Models.Entidades;
+﻿using BackendAPI.Models.Entidades;
 using BackendAPI.Models.Repositorio;
 using BackendAPI.Models.Repositorio.IRepositorio;
 using BackendAPI.Servicios.IServicios;
@@ -9,40 +8,40 @@ namespace BackendAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class JsonPlaceHolderPostController : Controller
+    public class JsonPlaceHolderCommentController : Controller
     {
         private readonly IJsonPlaceHolder _jsonPlaceHolder;
-        private readonly IJsonPlaceHolderPostRepositorio _jsonPlaceHolderPostRepositorio;
+        private readonly IJsonPlaceHolderCommentRepositorio _jsonPlaceHolderCommentRepositorio;
 
-        public JsonPlaceHolderPostController(IJsonPlaceHolder jsonPlaceHolder, IJsonPlaceHolderPostRepositorio jsonPlaceHolderPostRepositorio)
+        public JsonPlaceHolderCommentController(IJsonPlaceHolder jsonPlaceHolder, IJsonPlaceHolderCommentRepositorio jsonPlaceHolderCommentRepositorio)
         {
             _jsonPlaceHolder = jsonPlaceHolder;
-            _jsonPlaceHolderPostRepositorio = jsonPlaceHolderPostRepositorio;
+            _jsonPlaceHolderCommentRepositorio = jsonPlaceHolderCommentRepositorio;
         }
 
-        [HttpPost, Route("api/LlenarPostJsonPlaceHolder")]
+        [HttpPost, Route("api/LlenarCommentJsonPlaceHolder")]
         public async Task<ActionResult> LlenarPostJsonPlaceHolder()
         {
-            var post = await _jsonPlaceHolder.ObtenerPost();
+            var comment = await _jsonPlaceHolder.ObtenerComment();
 
-            if(post == null)
+            if (comment == null)
             {
-                return BadRequest("Error al obtener los post de JsonPlaceHolder.");
+                return BadRequest("Error al obtener los comments de JsonPlaceHolder.");
             }
             else
             {
-                await _jsonPlaceHolderPostRepositorio.GuardarPostsJson(post);
+                await _jsonPlaceHolderCommentRepositorio.GuardarCommentsJson(comment);
 
-                return StatusCode(StatusCodes.Status200OK, new { valor = post, msg = "Posts ingresados correctamente" });
+                return StatusCode(StatusCodes.Status200OK, new { valor = comment, msg = "Comments ingresados correctamente" });
             }
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Post>>> ObtenerPosts()
+        public async Task<ActionResult<List<Comment>>> ObtenerComment()
         {
             try
             {
-                return await _jsonPlaceHolderPostRepositorio.ObtenerPost();
+                return await _jsonPlaceHolderCommentRepositorio.ObtenerComment();
             }
             catch (Exception ex)
             {
@@ -51,67 +50,67 @@ namespace BackendAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarPost(Post posts)
+        public async Task<IActionResult> GuardarComment(Comment comment)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.GuardarPost(posts);
+                bool resultado = await _jsonPlaceHolderCommentRepositorio.GuardarComment(comment);
                 if (resultado)
                 {
-                    
+
                     return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
                 }
 
-                
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
-                
+
                 return StatusCode(500, "Error interno del servidor");
             }
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditarPosts(Post posts)
+        public async Task<IActionResult> EditarComment(Comment comment)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.EditarPost(posts);
+                bool resultado = await _jsonPlaceHolderCommentRepositorio.EditarComment(comment);
                 if (resultado)
                 {
-                    
+
                     return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
                 }
 
-                
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
-                
+
                 return StatusCode(500, "Error interno del servidor");
             }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> EliminarPost(int id)
+        public async Task<IActionResult> EliminarComment(int id)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.EliminarPost(id);
+                bool resultado = await _jsonPlaceHolderCommentRepositorio.EliminarComment(id);
                 if (resultado)
                 {
-                    
+
                     return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
                 }
 
-                
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
-                
+
                 return StatusCode(500, "Error interno del servidor");
             }
         }

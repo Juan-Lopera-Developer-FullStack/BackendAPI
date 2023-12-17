@@ -16,7 +16,7 @@ namespace BackendAPI.Models.Repositorio
             _conexion = conexion.Value;
         }
 
-        public async Task<bool> GuardarPostsJson(List<Posts> posts)
+        public async Task<bool> GuardarPostsJson(List<Post> posts)
         {
             string query = "INSERT INTO Posts (UserId, Id, Title, Body) " +
                                 "VALUES (@UserId, @Id, @Title, @Body)";
@@ -31,7 +31,7 @@ namespace BackendAPI.Models.Repositorio
                     cmd.Parameters.AddWithValue("@Id", item.Id);
                     cmd.Parameters.AddWithValue("@Title", item.Title);
                     cmd.Parameters.AddWithValue("@Body", item.Body);
-                    
+
 
                     await cmd.ExecuteNonQueryAsync();
                 }
@@ -40,9 +40,9 @@ namespace BackendAPI.Models.Repositorio
             }
         }
 
-            public async Task<List<Posts>> ObtenerPost()
-            {
-            List<Posts> lista = new();
+        public async Task<List<Post>> ObtenerPost()
+        {
+            List<Post> lista = new();
             string query = "select UserId, Id, Title, Body from Posts";
 
             using (var conexion = new SqlConnection(_conexion.CadenaSQL))
@@ -55,7 +55,7 @@ namespace BackendAPI.Models.Repositorio
                 {
                     while (await reader.ReadAsync())
                     {
-                        lista.Add(new Posts()
+                        lista.Add(new Post()
                         {
                             UserId = Convert.ToInt32(reader["UserId"]),
                             Id = Convert.ToInt32(reader["Id"]),
@@ -65,10 +65,10 @@ namespace BackendAPI.Models.Repositorio
                     }
                 }
             }
-                return lista;
-            }
+            return lista;
+        }
 
-        public async Task<bool> EditarPost(Posts posts)
+        public async Task<bool> EditarPost(Post posts)
         {
             using (var conexion = new SqlConnection(_conexion.CadenaSQL))
             {
@@ -109,7 +109,7 @@ namespace BackendAPI.Models.Repositorio
             }
         }
 
-        public async Task<bool> GuardarPost(Posts posts)
+        public async Task<bool> GuardarPost(Post posts)
         {
             using (var conexion = new SqlConnection(_conexion.CadenaSQL))
             {
@@ -130,5 +130,6 @@ namespace BackendAPI.Models.Repositorio
                 return false;
             }
         }
+
     }
 }

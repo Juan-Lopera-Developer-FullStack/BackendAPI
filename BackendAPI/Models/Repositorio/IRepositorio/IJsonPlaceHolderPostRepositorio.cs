@@ -4,10 +4,10 @@ namespace BackendAPI.Models.Repositorio.IRepositorio
 {
     public interface IJsonPlaceHolderPostRepositorio
     {
-        Task<List<Posts>> ObtenerPost();
-        Task<bool> GuardarPostsJson(List<Posts> posts);
-        Task<bool> EditarPost(Posts posts);
+        Task<List<Post>> ObtenerPost();
+        Task<bool> GuardarPostsJson(List<Post> posts);
+        Task<bool> EditarPost(Post posts);
         Task<bool> EliminarPost(int id);
-        Task<bool> GuardarPost(Posts posts);
+        Task<bool> GuardarPost(Post posts);
     }
 }
