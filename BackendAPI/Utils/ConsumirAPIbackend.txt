@@ -1,0 +1,132 @@
+Consumir token, enviar los parametros userName: Juan	password: juan123*
+post https://localhost:7199/api/User/api/TokenUser 
+
+
+Usuarios: en Authorization seleccionar: Bearer Token
+
+Ejecutar el metodo get:
+get https://localhost:7199//api/User
+
+
+post https://localhost:7199/api/User
+Ingresar usuario enviar el json:{
+  "userName": "Lopera",
+  "password": "54321"
+}
+
+
+put https://localhost:7199/api/User
+Para actualizar usurio enviar json:
+{
+  "idUser": 1,
+  "userName": "Pibe",
+  "password": "321."
+}
+
+Para eliminar enviar el parametro Id: 2
+delete https://localhost:7199/api/User
+
+
+Grupo Familiar: en Authorization seleccionar: Bearer Token
+
+Ejecutar el metodo get:
+get https://localhost:7199/api/FamilyGroup
+
+
+post https://localhost:7199/api/FamilyGroup
+Ingresar Grupo familiar, enviar el json: {
+  "usuario": "Shakira",
+  "cedula": "84294569",
+  "nombres": "Daniela",
+  "apellidos": "Paez",
+  "genero": "Femenino",
+  "parentesco": "Ninguno",
+  "edad": 18,
+  "fechaNacimiento": "10/20/1995",
+  "idUser": 1
+}
+
+
+put https://localhost:7199/api/FamilyGroup
+Actualizar Grupo familiar, enviar el json: {
+  "usuario": "Shakira",
+  "cedula": "84294569",
+  "nombres": "Martina",
+  "apellidos": "Paez",
+  "genero": "Femenino",
+  "parentesco": "Ninguno",
+  "edad": 18,
+  "fechaNacimiento": "10/20/1995",
+  "idUser": 1
+}
+
+Enviar en el parametro el Id:2 para eliminar
+delete https://localhost:7199/api/FamilyGroup
+
+
+CommentJsonPlaceHolder seleccionar Basic Auth: y enviar los parametros:
+ Username: jcloperachica@gmail.com Password:1234
+
+Ejecutar el metodo FillCommentJsonPlaceHolder para el llenado de tabla es SIN autenticación
+post https://localhost:7199/api/JsonPlaceHolderComment/FillCommentJsonPlaceHolder
+
+Ejecutar el metodo get: 
+get https://localhost:7199/api/JsonPlaceHolderComment
+
+
+post https://localhost:7199/api/JsonPlaceHolderComment
+Ingresar JsonPlaceHolderComment para el llenado de tabla
+{
+  "id": 501,
+  "postId": 3,
+  "name": "Modificacion",
+  "email": "prueba@example.com",
+  "body": "Aqui se ingresa"
+}
+
+
+put https://localhost:7199/api/JsonPlaceHolderComment
+Actualizar los comentarios de un post
+{
+  "id": 10,
+  "postId": 2,
+  "name": "Modificado",
+  "email": "paez@example.com",
+  "body": "Comentario modificado"
+}
+
+Enviar en el parametro el Id:1 para eliminar el comentario
+delete https://localhost:7199/api/JsonPlaceHolderComment
+
+
+
+Ejecutar el metodo FillPostJsonPlaceHolder para el llenado de tabla PostJsonPlaceHolder es SIN autenticación
+post https://localhost:7199/api/JsonPlaceHolderPost/FillPostJsonPlaceHolder
+Ingresar JsonPlaceHolderComment para el llenado de tabla
+
+
+Ejecutar el metodo Get para obtener los post
+get https://localhost:7199/api/JsonPlaceHolderPost
+
+
+post https://localhost:7199/api/JsonPlaceHolderPost
+{
+  "userId": 6,
+  "id": 101,
+  "title": "Nuevo registro",
+  "body": "hoy tecle demasiado"
+}
+
+
+put https://localhost:7199/api/JsonPlaceHolderPost
+Actualizar el post 
+{
+  "userId": 10,
+  "id": 91,
+  "title": "Actualizar registro posts",
+  "body": "se teclea demasiado"
+}
+
+
+Enviar en el parametro el Id:1 para eliminar el Post
+delete https://localhost:7199/api/JsonPlaceHolderPost
