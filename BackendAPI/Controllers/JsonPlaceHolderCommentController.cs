@@ -21,8 +21,9 @@ namespace BackendAPI.Controllers
             _jsonPlaceHolderCommentRepositorio = jsonPlaceHolderCommentRepositorio;
         }
 
+        [AllowAnonymous]
         [HttpPost, Route("FillCommentJsonPlaceHolder")]
-        public async Task<ActionResult> FillPostJsonPlaceHolder()
+        public async Task<ActionResult> FillCommentJsonPlaceHolder()
         {
             var comment = await _jsonPlaceHolder.GetComment();
 

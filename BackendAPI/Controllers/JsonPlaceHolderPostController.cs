@@ -21,7 +21,7 @@ namespace BackendAPI.Controllers
             _jsonPlaceHolder = jsonPlaceHolder;
             _jsonPlaceHolderPostRepository = jsonPlaceHolderPostRepositorio;
         }
-
+        [AllowAnonymous]
         [HttpPost, Route("FillPostJsonPlaceHolder")]
         public async Task<ActionResult> FillPostJsonPlaceHolder()
         {
