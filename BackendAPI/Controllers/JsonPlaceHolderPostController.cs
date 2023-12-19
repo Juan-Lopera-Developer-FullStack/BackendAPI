@@ -1,8 +1,8 @@
 ﻿
-using BackendAPI.Models.Entidades;
-using BackendAPI.Models.Repositorio;
-using BackendAPI.Models.Repositorio.IRepositorio;
-using BackendAPI.Servicios.IServicios;
+using BackendAPI.Models.Entities;
+using BackendAPI.Models.Repository;
+using BackendAPI.Models.Repository.IRepository;
+using BackendAPI.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAPI.Controllers
@@ -12,107 +12,107 @@ namespace BackendAPI.Controllers
     public class JsonPlaceHolderPostController : Controller
     {
         private readonly IJsonPlaceHolder _jsonPlaceHolder;
-        private readonly IJsonPlaceHolderPostRepositorio _jsonPlaceHolderPostRepositorio;
+        private readonly IJsonPlaceHolderPostRepository _jsonPlaceHolderPostRepository;
 
-        public JsonPlaceHolderPostController(IJsonPlaceHolder jsonPlaceHolder, IJsonPlaceHolderPostRepositorio jsonPlaceHolderPostRepositorio)
+        public JsonPlaceHolderPostController(IJsonPlaceHolder jsonPlaceHolder, IJsonPlaceHolderPostRepository jsonPlaceHolderPostRepositorio)
         {
             _jsonPlaceHolder = jsonPlaceHolder;
-            _jsonPlaceHolderPostRepositorio = jsonPlaceHolderPostRepositorio;
+            _jsonPlaceHolderPostRepository = jsonPlaceHolderPostRepositorio;
         }
 
-        [HttpPost, Route("api/LlenarPostJsonPlaceHolder")]
-        public async Task<ActionResult> LlenarPostJsonPlaceHolder()
+        [HttpPost, Route("FillPostJsonPlaceHolder")]
+        public async Task<ActionResult> FillPostJsonPlaceHolder()
         {
-            var post = await _jsonPlaceHolder.ObtenerPost();
+            var post = await _jsonPlaceHolder.GetPost();
 
             if(post == null)
             {
-                return BadRequest("Error al obtener los post de JsonPlaceHolder.");
+                return BadRequest("Error when obtaining the posts from JsonPlaceHolder.");
             }
             else
             {
-                await _jsonPlaceHolderPostRepositorio.GuardarPostsJson(post);
+                await _jsonPlaceHolderPostRepository.SavePostsJson(post);
 
-                return StatusCode(StatusCodes.Status200OK, new { valor = post, msg = "Posts ingresados correctamente" });
+                return StatusCode(StatusCodes.Status200OK, new { value = post, msg = "Posts entered correctly" });
             }
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Post>>> ObtenerPosts()
+        public async Task<ActionResult<List<Post>>> GetPosts()
         {
             try
             {
-                return await _jsonPlaceHolderPostRepositorio.ObtenerPost();
+                return await _jsonPlaceHolderPostRepository.GetPost();
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error interno del servidor");
+                return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> GuardarPost(Post posts)
+        public async Task<IActionResult> SavePost(Post posts)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.GuardarPost(posts);
+                bool resultado = await _jsonPlaceHolderPostRepository.SavePost(posts);
                 if (resultado)
                 {
                     
-                    return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
+                    return StatusCode(StatusCodes.Status200OK, new { value = resultado, msg = "ok" });
                 }
 
                 
-                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { value = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
                 
-                return StatusCode(500, "Error interno del servidor");
+                return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditarPosts(Post posts)
+        public async Task<IActionResult> EditPosts(Post posts)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.EditarPost(posts);
+                bool resultado = await _jsonPlaceHolderPostRepository.EditPost(posts);
                 if (resultado)
                 {
                     
-                    return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
+                    return StatusCode(StatusCodes.Status200OK, new { value = resultado, msg = "ok" });
                 }
 
                 
-                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { value = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
                 
-                return StatusCode(500, "Error interno del servidor");
+                return StatusCode(500, "Internal server error");
             }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> EliminarPost(int id)
+        public async Task<IActionResult> DeletePost(int id)
         {
             try
             {
-                bool resultado = await _jsonPlaceHolderPostRepositorio.EliminarPost(id);
+                bool resultado = await _jsonPlaceHolderPostRepository.DeletePost(id);
                 if (resultado)
                 {
                     
-                    return StatusCode(StatusCodes.Status200OK, new { valor = resultado, msg = "ok" });
+                    return StatusCode(StatusCodes.Status200OK, new { value = resultado, msg = "ok" });
                 }
 
                 
-                return StatusCode(StatusCodes.Status500InternalServerError, new { valor = resultado, msg = "error" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { value = resultado, msg = "error" });
             }
             catch (Exception ex)
             {
                 
-                return StatusCode(500, "Error interno del servidor");
+                return StatusCode(500, "Internal server error");
             }
         }
 

@@ -1,8 +1,8 @@
-using BackendAPI.Models.Configuracion;
-using BackendAPI.Models.Repositorio;
-using BackendAPI.Models.Repositorio.IRepositorio;
-using BackendAPI.Servicios;
-using BackendAPI.Servicios.IServicios;
+using BackendAPI.Models.Configuration;
+using BackendAPI.Models.Repository;
+using BackendAPI.Models.Repository.IRepository;
+using BackendAPI.Services;
+using BackendAPI.Services.IServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -15,14 +15,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.Configure<ConfiguracionConexion>(builder.Configuration.GetSection("ConfiguracionConexion"));
-builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-builder.Services.AddScoped<IGrupoFamiliarRepositorio, GrupoFamiliarRepositorio>();
-builder.Services.AddScoped<ILogPeticionRepositorio, LogPeticionRepositorio>();
+builder.Services.Configure<ConfigConnection>(builder.Configuration.GetSection("ConfiguracionConexion"));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IFamilyGroupRepository, FamilyGroupRepository>();
+builder.Services.AddScoped<ILogPetitionRepository, LogPetitionRepository>();
 builder.Services.AddScoped<IBearerToken, BearerToken>();
 builder.Services.AddHttpClient<IJsonPlaceHolder, JsonPlaceHolder>();
-builder.Services.AddScoped<IJsonPlaceHolderPostRepositorio, JsonPlaceHolderPostRepositorio>();
-builder.Services.AddScoped<IJsonPlaceHolderCommentRepositorio, JsonPlaceHolderCommentRepositorio>();
+builder.Services.AddScoped<IJsonPlaceHolderPostRepository, JsonPlaceHolderPostRepository>();
+builder.Services.AddScoped<IJsonPlaceHolderCommentRepository, JsonPlaceHolderCommentRepository>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer( options =>
 {
