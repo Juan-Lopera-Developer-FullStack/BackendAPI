@@ -1,13 +1,15 @@
-﻿using BackendAPI.Models.Entities;
-using BackendAPI.Models.Repository;
+﻿using AspNetCore.Authentication.Basic;
+using BackendAPI.Models.Entities;
 using BackendAPI.Models.Repository.IRepository;
 using BackendAPI.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = BasicDefaults.AuthenticationScheme)]
     public class JsonPlaceHolderCommentController : Controller
     {
         private readonly IJsonPlaceHolder _jsonPlaceHolder;

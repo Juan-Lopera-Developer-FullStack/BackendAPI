@@ -44,3 +44,7 @@ D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\refint\BackendAPI.dll
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\BackendAPI.pdb
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\BackendAPI.genruntimeconfig.cache
 D:\Praxedes\BackendAPI\BackendAPI\obj\Debug\net6.0\ref\BackendAPI.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\AspNetCore.Authentication.Basic.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\FluentValidation.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\Praxedes\BackendAPI\BackendAPI\bin\Debug\net6.0\FluentValidation.AspNetCore.dll

@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "IpXe3cjDt+TiyFZNfd8zbT4DQtjn+90+J3e7orAGwuHh7HC/cvEL4Zyy3YihokuEX6HFPhx0PKwTM09YWUUnbg==",
+  "dgSpecHash": "mC7Uyl2SpIwXPIOqL0gD1aXDWF+xZ8PjqxsERgAcYSU/TA3IcKAuMsmKDL2yXxZY2Nzd6nO5eqh7e+Hqtc9Vmw==",
   "success": true,
   "projectFilePath": "D:\\Praxedes\\BackendAPI\\BackendAPI\\BackendAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Piedad\\.nuget\\packages\\aspnetcore.authentication.basic\\6.0.1\\aspnetcore.authentication.basic.6.0.1.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.1\\microsoft.aspnetcore.authentication.jwtbearer.6.0.1.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
     "C:\\Users\\Piedad\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",

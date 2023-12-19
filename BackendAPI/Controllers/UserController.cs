@@ -121,7 +121,7 @@ namespace BackendAPI.Controllers
                     string Jwt = _bearerToken.GenerateTokenJwt(userName, password);
                     _LogPetitionRepositorio.LogPetition("TokenUser", "Post", true, "Token successs "
                         + userName);
-                    return StatusCode(StatusCodes.Status200OK, new { value = Jwt, msg = "ok" });
+                    return StatusCode(StatusCodes.Status200OK, Jwt);
                 }
 
                 _LogPetitionRepositorio.LogPetition("TokenUser", "Post", false, "Error running TokenUser");

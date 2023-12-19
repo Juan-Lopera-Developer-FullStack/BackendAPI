@@ -1,5 +1,8 @@
 ﻿using BackendAPI.Models.Entities;
 using BackendAPI.Models.Repository.IRepository;
+using BackendAPI.Validator;
+using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,13 +15,15 @@ namespace BackendAPI.Controllers
         private readonly IFamilyGroupRepository _FamilyGroupRepositorio;
         private readonly ILogPetitionRepository _LogPetitionRepositorio;
 
-        public FamilyGroupController(IFamilyGroupRepository FamilyGroupRepositorio, ILogPetitionRepository LogPetitionRepositorio)
+        public FamilyGroupController(IValidator<FamilyGroup> validator,
+            IFamilyGroupRepository FamilyGroupRepositorio,
+            ILogPetitionRepository LogPetitionRepositorio)
         {
             _FamilyGroupRepositorio = FamilyGroupRepositorio;
             _LogPetitionRepositorio = LogPetitionRepositorio;
         }
 
-        
+
         [Authorize, HttpGet]
         public IActionResult GetFamilyGroup()
         {
@@ -36,20 +41,25 @@ namespace BackendAPI.Controllers
         }
 
         [Authorize, HttpPost]
-        public IActionResult SaveFamilyGroup(FamilyGroup FamilyGroup)
+        public IActionResult SaveFamilyGroup(FamilyGroup familyGroup)
         {
             try
             {
-                bool resultado = _FamilyGroupRepositorio.SaveFamilyGroup(FamilyGroup);
-                if (resultado)
+                var validator = new FamilyGroupValidator();
+                ValidationResult resultValidator = validator.Validate(familyGroup);
+                bool result = false;
+                
+                if (resultValidator.IsValid)
                 {
-                    _LogPetitionRepositorio.LogPetition("SaveFamilyGroup", "Post", true, "The family is created successful " 
-                        + FamilyGroup.Nombres + " con la cedula " + FamilyGroup.Cedula);
-                    return StatusCode(StatusCodes.Status200OK, new { value = resultado, msg = "ok" });
+                    result = _FamilyGroupRepositorio.SaveFamilyGroup(familyGroup);
+
+                    _LogPetitionRepositorio.LogPetition("SaveFamilyGroup", "Post", true, "The family is created successful "
+                        + familyGroup.Nombres + " con la cedula " + familyGroup.Cedula);
+                    return StatusCode(StatusCodes.Status200OK, new { value = result, msg = "ok" });
                 }
 
                 _LogPetitionRepositorio.LogPetition("SaveFamilyGroup", "Post", false, "Error running SaveFamilyGroup");
-                return StatusCode(StatusCodes.Status500InternalServerError, new { value = resultado, msg = "error" });
+                return StatusCode(StatusCodes.Status500InternalServerError, new { value = result, msg = "error: " + resultValidator });
             }
             catch (Exception ex)
             {
@@ -59,15 +69,15 @@ namespace BackendAPI.Controllers
         }
 
         [Authorize, HttpPut]
-        public IActionResult EditFamilyGroup(FamilyGroup FamilyGroup)
+        public IActionResult EditFamilyGroup(FamilyGroup familyGroup)
         {
             try
             {
-                bool resultado = _FamilyGroupRepositorio.EditFamilyGroup(FamilyGroup);
+                bool resultado = _FamilyGroupRepositorio.EditFamilyGroup(familyGroup);
                 if (resultado)
                 {
-                    _LogPetitionRepositorio.LogPetition("EditFamilyGroup", "Put", true, "Update family " 
-                        + FamilyGroup.Usuario);
+                    _LogPetitionRepositorio.LogPetition("EditFamilyGroup", "Put", true, "Update family "
+                        + familyGroup.Usuario);
                     return StatusCode(StatusCodes.Status200OK, new { value = resultado, msg = "ok" });
                 }
                 _LogPetitionRepositorio.LogPetition("EditFamilyGroup", "Put", false, "Error running EditFamilyGroup");
